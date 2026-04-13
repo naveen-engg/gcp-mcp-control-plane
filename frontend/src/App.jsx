@@ -183,9 +183,14 @@ function LOBDeployment() {
           <button 
             onClick={handleDeploy} 
             disabled={isLoading} 
-            className="btn-primary w-full py-3 mt-4 text-lg disabled:opacity-50"
+            className="btn-primary w-full py-3 mt-4 text-lg disabled:opacity-50 relative overflow-hidden"
           >
             {isLoading ? 'Deploying...' : 'Register & Deploy'}
+            {isLoading && (
+              <div className="absolute bottom-0 left-0 h-1 bg-white/50 animate-[shimmer_2s_infinite] w-full" style={{
+                backgroundImage: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent)'
+              }}></div>
+            )}
           </button>
 
           <div className="mt-8 pt-8 border-t border-slate-700/50">

@@ -71,7 +71,8 @@ def deploy_mcp(req: DeployRequest):
             steps=[
                 {"name": "gcr.io/cloud-builders/git", "args": ["clone", f"https://github.com/{repo_clean}", "repo"]},
                 {"dir": "repo", "name": "gcr.io/cloud-builders/docker", "args": ["build", "-t", image_name, "."]},
-                {"dir": "repo", "name": "gcr.io/cloud-builders/docker", "args": ["push", image_name]}
+                {"dir": "repo", "name": "gcr.io/cloud-builders/docker", "args": ["push", image_name]},
+                {"name": "gcr.io/google.com/cloudsdktool/cloud-sdk", "args": ["gcloud", "run", "deploy", f"{req.project_id}-mcp-agent", "--image", image_name, "--region", "us-central1", "--allow-unauthenticated"]}
             ],
             images=[image_name]
         )
@@ -80,12 +81,13 @@ def deploy_mcp(req: DeployRequest):
         try:
             # We explicitly execute the build into the target user project
             operation = build_client.create_build(project_id=req.project_id, build=build)
-            log_messages.append(f"Cloud Build successfully dispatched into project {req.project_id}.")
-            log_messages.append(f"Buildpack utilized to compile FastMCP.")
-            log_messages.append(f"Cloud Run Service launch command queued.")
+            log_messages.append(f"Cloud Build operation '{operation.metadata.build.id}' successfully dispatched into project '{req.project_id}'.")
+            log_messages.append(f"Container build and Cloud Run Service launch command queued.")
         except Exception as e:
-            # Fallback if their sandbox lacks quotas/billing
-            log_messages.append(f"Cloud Build SDK dispatched. Awaiting remote execution completion...")
+            # Expose the EXACT error so the UI can print it if APIs are disabled
+            error_str = str(e)
+            log_messages.append(f"[GCP API REJECTED]: {error_str}")
+            log_messages.append("Please ensure Cloud Build API is enabled in your LOB project.")
         
         # Register in our Dynamic Admin Fleet memory
         ACTIVE_DEPLOYMENTS.append({
@@ -96,7 +98,7 @@ def deploy_mcp(req: DeployRequest):
         })
 
     except Exception as e:
-        log_messages.append(f"GCP SDK Notice: Ensure ADCs have quotas defined. Proceeding.")
+        log_messages.append(f"[CRITICAL ERROR] Failed to authenticate Orchestrator: {str(e)}")
         
     return {
         "status": "success",

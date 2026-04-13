@@ -63,6 +63,29 @@ The destination projects where the actual AI Agents run (`sample-lob`). The outp
 
 ---
 
+## ✨ Key Advantages
+
+- **Centralized Multi-Tenant Management**: A single control plane to orchestrate MCP agents across isolated LOB projects.
+- **Secure IAM Proxying**: The `platform-orchestrator-api` prevents the need for broad IAM permissions for end-users by acting as a secure intermediary.
+- **Automated CI/CD Pipelines**: One-click deployment from GitHub to Cloud Run using optimized Google Cloud Build steps.
+- **Real-time Observability**: Track deployment traces and global fleet metrics directly from a premium, high-fidelity dashboard.
+- **Scalable Hub-and-Spoke Model**: Easily onboard new LOBs with minimal configuration while maintaining strict resource isolation.
+- **Developer-Centric Experience**: Simplified agent registration and automatic generation of Claude Desktop configurations.
+
+---
+
+## 📸 UI Screenshots
+
+### Global Fleet Overview
+Displays real-time metrics and the status of all active MCP agent clusters across the enterprise.
+![Global Fleet Overview](./docs/images/admin_fleet_view.png)
+
+### MCP Agent Deployment
+A streamlined interface for LOB developers to register projects and trigger automated builds.
+![MCP Agent Deployment](./docs/images/deployments_view.png)
+
+---
+
 ## 🚀 Live Testing URLs
 
 *   **Platform Dashboard (LOB & Admin UI):** https://mcp-dashboard-668628440470.us-central1.run.app 
