@@ -86,11 +86,4 @@ A streamlined interface for LOB developers to register projects and trigger auto
 
 ---
 
----
-
-## 🔒 Decommissioning Notice
-
-The live testing environment for this project has been decommissioned. All GCP resources (Cloud Run services, IAM members, and Service Accounts) have been destroyed using Terraform and the `gcloud` CLI as of the final commit. 
-
-For local development and testing, refer to the **Architecture & Flow** section to provision your own Hub-and-Spoke model in Google Cloud.
 
