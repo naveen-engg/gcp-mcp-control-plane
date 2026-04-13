@@ -1,0 +1,5 @@
+lob_project_id      = "mcp-lob-sales"
+host_project_id     = "mcp-platform-hub"
+platform_sa_email   = "platform-orchestrator@mcp-platform-hub.iam.gserviceaccount.com"
+shared_subnet_name  = "mcp-lob-subnet-us-central1"
+region              = "us-central1"

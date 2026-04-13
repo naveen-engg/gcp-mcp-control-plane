@@ -1,0 +1,23 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-dark: #0f172a;
+  --color-brand-primary: #3b82f6;
+  --color-brand-accent: #10b981;
+  --color-brand-panel: #1e293b;
+}
+
+@layer base {
+  body {
+    @apply bg-brand-dark text-slate-100 font-sans antialiased m-0;
+  }
+}
+
+@layer components {
+  .glass-panel {
+    @apply bg-brand-panel/60 backdrop-blur-md border border-slate-700/50 rounded-xl shadow-xl;
+  }
+  .btn-primary {
+    @apply px-4 py-2 bg-brand-primary hover:bg-blue-600 text-white font-medium rounded-lg transition-colors shadow-lg shadow-blue-500/25;
+  }
+}
