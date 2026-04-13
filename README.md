@@ -86,14 +86,11 @@ A streamlined interface for LOB developers to register projects and trigger auto
 
 ---
 
-## 🚀 Live Testing URLs
+---
 
-*   **Platform Dashboard (LOB & Admin UI):** https://mcp-dashboard-668628440470.us-central1.run.app 
-*   **Orchestrator API (Backend):** https://platform-orchestrator-api-668628440470.us-central1.run.app
+## 🔒 Decommissioning Notice
 
-### How to Deploy an Agent
-1. Visit the Platform Dashboard URL.
-2. Navigate to **Deployments**.
-3. Input `mcp-lob-sales` for the GCP Project ID.
-4. Input `https://github.com/naveen-engg/sample-lob` for the Repo.
-5. Click **Deploy** to observe the Orchestrator push the Cloud Build instructions directly to the target environment.
+The live testing environment for this project has been decommissioned. All GCP resources (Cloud Run services, IAM members, and Service Accounts) have been destroyed using Terraform and the `gcloud` CLI as of the final commit. 
+
+For local development and testing, refer to the **Architecture & Flow** section to provision your own Hub-and-Spoke model in Google Cloud.
+
